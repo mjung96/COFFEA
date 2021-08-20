@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
@@ -7,7 +7,8 @@ import { useForm } from '../util/hooks';
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
 
-function PostForm() {
+function PostForm(props) {
+    const [errors, setErrors] = useState({});
 
     const { values, onChange, onSubmit } = useForm(createPostCallback, {
         body: '',
@@ -26,19 +27,29 @@ function PostForm() {
           proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
           values.body = '';
           values.title = '';
-            values.summary = '';
-            values.imageUrl = '';
-        }
+          values.summary = '';
+          values.imageUrl = '';
+          //props.push('/');
+          window.location.reload(true);
+        },
+
+        onError(err) {
+          setErrors(err.graphQLErrors[0].extensions.errors);
+        },
+        
       });
 
     function createPostCallback() {
-        createPost();
+        if(!createPost()) {
+          //window.location.reload(true);
+        }
+        //window.location.reload(true);
     }
 
     return (
         <>
           <Form onSubmit={onSubmit}>
-            <h2>Share a Recipe!</h2>
+            <h2>Post Something!</h2>
             <Form.Field>
               <Form.Input
                 placeholder="Title"
@@ -60,13 +71,13 @@ function PostForm() {
                    value={values.imageUrl}
                 />
                 <Form.Input
-                   placeholder= "Recipe"
+                   placeholder= "Body"
                    name="body"
                    onChange={onChange}
                    value={values.body}
                    error={error ? true : false}
                 />
-              <Button type="submit" color="brown">
+              <Button type="submit" color="brown" style={{ marginBottom: 20 }}>
                 Submit
               </Button>
             </Form.Field>
@@ -74,6 +85,7 @@ function PostForm() {
           {error && (
             <div className="ui error message" style={{ marginBottom: 20 }}>
               <ul className="list">
+                <li>{error.ApollError}</li>
                 <li>{error.graphQLErrors[0].message}</li>
               </ul>
             </div>
