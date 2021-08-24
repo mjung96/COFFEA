@@ -56,7 +56,7 @@ function SinglePost(props) {
                 </Grid.Row>
                 <Grid.Row>
                     <Item.Group>
-                        <Item>
+                        <Item fluid>
                             <Item.Content>
                                 <Item.Header>
                                     {title}
@@ -88,7 +88,7 @@ function SinglePost(props) {
                             </Item.Content>
                         </Item>
                         {user && (
-                            <Card fluid>
+                            <Card>
                                 <Card.Content>
                                 <Form>
                                     <div className="ui action input fluid">
@@ -132,6 +132,92 @@ function SinglePost(props) {
                     </Item.Group>
                 </Grid.Row>
             </Grid>
+
+            // <Grid>
+            //     <Grid.Row>
+            //         <Image 
+            //             src = {imageUrl}
+            //             size="medium"
+            //         />
+            //     </Grid.Row>
+            //     <Grid.Row>
+            //         <Item.Group>
+            //             <Item>
+            //                 <Item.Content>
+            //                     <Item.Header>
+            //                         {title}
+            //                     </Item.Header>
+            //                     <Item.Meta>
+            //                         {username}, {moment(createdAt).fromNow()}
+            //                     </Item.Meta>
+            //                     <Item.Description>
+            //                         {body}
+            //                     </Item.Description>
+            //                     <Item.Extra>
+            //                     <LikeButton user={user} post={{id, likeCount, likes}}/>
+            //                         <Button
+            //                             as="div"   
+            //                             labelPosition="right" 
+            //                             onClick={() => console.log('Comment on post')}
+            //                         >
+            //                         <Button basic color="black">
+            //                             <Icon name="comment"/>
+            //                         </Button>
+            //                             <Label basic color="black" pointing="left">
+            //                                  {commentCount}
+            //                             </Label>
+            //                         </Button>
+            //                         {user && user.username === username && (
+            //                         <DeleteButton postId={id} callback={deletePostCallback}/>
+            //                         )}
+            //                     </Item.Extra>
+            //                 </Item.Content>
+            //             </Item>
+            //             {user && (
+            //                 <Card fluid>
+            //                     <Card.Content>
+            //                     <Form>
+            //                         <div className="ui action input fluid">
+            //                             <input
+            //                                 type="text"
+            //                                 placeholder="Comment"
+            //                                 name="comment"
+            //                                 value={comment}
+            //                                 onChange={event => setComment(event.target.value)}
+            //                             />
+            //                             <button type="submit"
+            //                                 className="ui button brown"
+            //                                 disabled={comment.trim() === ''}
+            //                                 onClick={submitComment}
+            //                                 >
+            //                                 Submit 
+            //                             </button>
+            //                         </div>
+            //                     </Form>
+            //                     </Card.Content>
+            //                 </Card>
+            //             )}
+            //             {comments.map(comment => (
+            //                 <Card fluid key={comment.id}>
+            //                     <Card.Content>
+            //                         {user && user.username === comment.username && (
+            //                             <DeleteButton postId={id} commentId={comment.id}/>
+            //                         )}
+            //                         <Card.Header>
+            //                             {comment.username}
+            //                         </Card.Header>
+            //                         <Card.Meta>
+            //                             {moment(comment.createdAt).fromNow()}
+            //                         </Card.Meta>
+            //                         <Card.Description>
+            //                             {comment.body}
+            //                         </Card.Description>
+            //                     </Card.Content>
+            //                 </Card>
+            //             ))}
+            //         </Item.Group>
+            //     </Grid.Row>
+            // </Grid>
 
             
 
